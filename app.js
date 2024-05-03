@@ -60,7 +60,16 @@ app.get("/usuarios/:nombre",(req,res)=>{
  })
  
 
+app.delete("/usuarios/:nombre", (req, res) => {
+    const nombre = req.params.nombre;
+    const usuariosAntes = usuarios.length;
 
+    usuarios = usuarios.filter(user => user.nombre !== nombre);
+
+    if (usuarios.length < usuariosAntes) {
+        res.status(200).send("Usuario eliminado correctamente");
+    }
+});
 // app.get("/usuarios/:Ryu",(req,res)=>{
 //     res.send(`<h1>Personajes</h1> <ul><li>ID: ${usuarios[0].id}</li>
 //     <li> Nombre: ${usuarios[0].nombre}</li>
